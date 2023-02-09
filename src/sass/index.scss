@@ -1,2 +1,7 @@
-@import './common';
+@import './components/common';
+@import './components/container';
+@import './components/footer';
+@import './components/header';
 
+@import './utils/resets';
+@import './utils/fonts';

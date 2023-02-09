@@ -1,0 +1,31 @@
+//Podstawowe resety
+//NIE USUWAĆ
+//NIE EDYTOWAĆ
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+// Główny kolor tekstu, używany przy nagłówkach
+$primary-text: #000000;
+// Kolor tekstów drugiego rzędu
+$secondary-text: #ff6b08;
+// Kolor tesktu trzeciego rzędu
+$third-text: #ffffff;
+// Footer tekst kolor
+$footerColor: #545454;
+// Główne tło przycisków
+$themeBtn: #ff6b01;
+// Error kolor
+$error: #ff001b;
