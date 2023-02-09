@@ -20,3 +20,6 @@
 //   console.log(movies);
 //   return movies;
 // };
+=======
+import './partialsJS/searchingMovies';
+
