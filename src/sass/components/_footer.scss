@@ -1,0 +1,32 @@
+@use '../utils/resets' as *;
+
+.footer {
+  height: 100px;
+  background: #f7f7f7;
+  &__box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 9px;
+    font-family: Roboto;
+    color: $footerColor;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  &__text {
+    margin: 0 auto;
+    padding-top: 28px;
+  }
+  &__link {
+    margin: 0 auto;
+  }
+  &__img {
+    position: relative;
+    top: 2px;
+    padding: 0px 10px;
+  }
+}

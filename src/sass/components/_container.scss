@@ -1,0 +1,36 @@
+/***************** MOBILE *****************/
+@media screen and (min-width: 320px) {
+  .container {
+    max-width: 425px;
+    min-width: 320px;
+    display: block;
+    margin: auto;
+    background-color: rgb(212, 221, 221);
+  }
+  .box {
+    height: 600px;
+    border: 5px solid tomato;
+  }
+
+}
+
+/***************** TABLET *****************/
+@media screen and (min-width: 768px) {
+  .container {
+    min-width: 768px;
+  }
+  .box {
+    height: 600px;
+    border: 5px solid tomato;
+  }
+}
+/***************** DESKTOP *****************/
+@media screen and (min-width: 1024px) {
+  .container {
+    min-width: 1024px;
+  }
+  .box {
+    height: 600px;
+    border: 5px solid tomato;
+  }
+}
