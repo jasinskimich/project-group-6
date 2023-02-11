@@ -19,18 +19,11 @@
   .container {
     min-width: 768px;
   }
-  .box {
-    height: 600px;
-    border: 5px solid tomato;
-  }
+
 }
 /***************** DESKTOP *****************/
 @media screen and (min-width: 1024px) {
   .container {
     min-width: 1024px;
-  }
-  .box {
-    height: 600px;
-    border: 5px solid tomato;
   }
 }
