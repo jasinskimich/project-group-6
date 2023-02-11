@@ -20,5 +20,6 @@
 //   console.log(movies);
 //   return movies;
 // };
-import './partialsJS/searchingMovies';
+
+import './partialsJS/searchingPupularMovies';
 
