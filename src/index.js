@@ -1,3 +1,6 @@
+
+import {} from './partialsJS/fetchAPI';
+
 // api
 // const searchBar = document.querySelector('#search');
 // const output = document.querySelector('.output');
@@ -22,4 +25,5 @@
 // };
 
 import './partialsJS/searchingPupularMovies';
+
 
