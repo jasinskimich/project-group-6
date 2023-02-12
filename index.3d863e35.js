@@ -1,2 +1,0 @@
-const t=document.querySelector(".options__button--clicked"),o=document.querySelector(".options__button");o.addEventListener("click",(()=>{o.classList.remove("options__button"),o.classList.add("options__button--clicked"),t.classList.remove("options__button--clicked"),t.classList.add("options__button")})),t.addEventListener("click",(()=>{t.classList.remove("options__button"),t.classList.add("options__button--clicked"),o.classList.remove("options__button--clicked"),o.classList.add("options__button")}));
-//# sourceMappingURL=index.3d863e35.js.map
