@@ -1,5 +1,3 @@
-import {} from './partialsJS/fetchAPI';
-
 // api
 // const searchBar = document.querySelector('#search');
 // const output = document.querySelector('.output');
@@ -23,5 +21,6 @@ import {} from './partialsJS/fetchAPI';
 //   return movies;
 // };
 
-import './partialsJS/searchingPupularMovies';
-import './partialsJS/fetchAPI';
+// import './partialsJS/searchingPupularMovies';
+// import './partialsJS/fetchAPI';
+import './partialsJS/libraryButtons';
