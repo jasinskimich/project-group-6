@@ -1,5 +1,5 @@
 @use '../utils/resets' as *;
-
+/***************** MOBILE *****************/
 .footer {
   height: 100px;
   background: #f7f7f7;
@@ -26,7 +26,40 @@
   }
   &__img {
     position: relative;
-    top: 2px;
+    top: 3px;
     padding: 0px 10px;
+  }
+}
+/***************** TABLET *****************/
+@media screen and (min-width: 768px) {
+  .footer {
+    height: 77px;
+    &__box {
+      flex-wrap: nowrap;
+      flex-direction: row;
+      gap: 0px;
+      font-size: 16px;
+      line-height: 19px;
+    }
+    &__text {
+      padding: 30px 0px 28px 143px;
+      margin: 0;
+    }
+    &__link {
+      padding: 30px 143px 28px 4px;
+      margin: 0;
+    }
+  }
+}
+
+/***************** DESKTOP *****************/
+@media screen and (min-width: 1024px) {
+  .footer {
+    &__text {
+      padding-left: 271px;
+    }
+    &__link {
+      padding-right: 271px;
+    }
   }
 }
