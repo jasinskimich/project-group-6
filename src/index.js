@@ -21,6 +21,6 @@
 //   return movies;
 // };
 
-// import './partialsJS/searchingPupularMovies';
-// import './partialsJS/fetchAPI';
+import './partialsJS/searchingPupularMovies';
+import './partialsJS/fetchAPI';
 import './partialsJS/libraryButtons';
