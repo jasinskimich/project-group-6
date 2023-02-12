@@ -1,4 +1,3 @@
-
 import {} from './partialsJS/fetchAPI';
 
 // api
@@ -25,5 +24,4 @@ import {} from './partialsJS/fetchAPI';
 // };
 
 import './partialsJS/searchingPupularMovies';
-
-
+import './partialsJS/fetchAPI';
