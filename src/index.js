@@ -22,4 +22,4 @@
 // };
 
 import './partialsJS/searchingPupularMovies';
-
+import './partialsJS/modal';
