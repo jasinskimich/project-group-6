@@ -20,7 +20,8 @@
 //   console.log(movies);
 //   return movies;
 // };
-import './partialsJS/libraryButtons';
+
 import './partialsJS/searchingPupularMovies';
+import './partialsJS/libraryButtons';
 import './partialsJS/fetchAPI';
 
