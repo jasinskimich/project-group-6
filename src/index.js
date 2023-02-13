@@ -24,4 +24,5 @@
 import './partialsJS/searchingPupularMovies';
 import './partialsJS/libraryButtons';
 import './partialsJS/fetchAPI';
+import './partialsJS/modal';
 
