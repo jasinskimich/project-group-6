@@ -25,6 +25,7 @@
   transition-property: visibility, opacity;
   transition-duration: 250ms;
   opacity: 1;
+  z-index: 1;
 }
 
 .is-hidden {
