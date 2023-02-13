@@ -60,15 +60,15 @@ async function updatingPopularMovieHTML() {
     <div class="movie__imgbox">
     <img class="movie__img" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" loading="lazy"/>
     </div>
-    <div class="movie__info">
-      <p class="movie__title">
+    <p class="movie__title">
         <b>${movie.title}</b>
       </p>
+    <div class="movie__info">
       <p class="movie__genres">
-        ${genre}
+        ${genre.slice(0,2)}&nbsp;
       </p>
       <p class="movie__year">
-        ${yearOfProduction}
+        | ${yearOfProduction}
       </p>
     </div>
   </div>`;

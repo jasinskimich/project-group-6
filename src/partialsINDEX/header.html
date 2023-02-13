@@ -1,34 +1,43 @@
 <header class="container header">
-  <div class="header__display">
-    <div class="logo">
-      <a href="" class="logo__link">
-        <img src="./images/film.png" class="logo__link--image" />
-        <span class="logo__link--text">Filmoteka</span>
-      </a>
+  <div class="header__background">
+    <div class="header__display">
+      <div class="logo">
+        <a href="" class="logo__link">
+          <img src="./images/film.png" class="logo__link--image" />
+          <span class="logo__link--text">Filmoteka</span>
+        </a>
+      </div>
+      <div class="nav">
+        <ul class="nav__list">
+          <li class="nav__list--item"><a href="index.html">HOME</a></li>
+          <li class="nav__list--item1">
+            <a href="library.html">MY LIBRARY</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="nav">
-      <ul class="nav__list">
-        <li class="nav__list--item"><a href="">HOME</a></li>
-        <li class="nav__list--item">
-          <a href="">MY LIBRARY</a>
-        </li>
-      </ul>
+    <div class="search">
+      <form class="search-form" id="search-form">
+        <input
+          id="search"
+          class="search-form__input"
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Search films..."
+        />
+        <button
+          class="search-form__button"
+          type="submit"
+          aria-label="Search button"
+        >
+          <img src="./images/search 2.png" class="search-form__icon" />
+        </button>
+      </form>
+      <span class="search__text visibility"
+        >Search result not successful. Enter the correct movie name and try
+        again..</span
+      >
     </div>
   </div>
-  <form class="search-form" id="search-form">
-    <input
-      class="search-form__input"
-      type="text"
-      name="searchQuery"
-      autocomplete="off"
-      placeholder="Search films..."
-    />
-    <button
-      class="search-form__button"
-      type="submit"
-      aria-label="Search button"
-    >
-      <img src="./images/search 2.png" class="search-form__icon" />
-    </button>
-  </form>
 </header>

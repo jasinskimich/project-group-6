@@ -1,0 +1,58 @@
+/***************** MOBILE *****************/
+.box {
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    margin: 0 auto;
+    padding: 15px;
+}
+.movie__card {
+    height: 470px;
+    width: 280px;
+    flex-direction: column;
+    display: flex;
+    position: relative;
+}
+.movie__imgbox {
+    height: 402px;
+    width: 280px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.movie__img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+    display: block;
+}
+.movie__info {
+    font-weight: 500;
+    color: #FF6B08;
+    display: flex;
+    flex-direction: row;
+}
+.movie__title {
+    padding-top: 10px;
+}
+/***************** TABLET *****************/
+@media screen and (min-width: 768px) {
+    .box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 30px;
+    padding: 84px;
+}
+}
+/***************** DESKTOP *****************/
+@media screen and (min-width: 1024px) {
+    .box {
+    padding: 57px;
+    }
+}
