@@ -51,20 +51,19 @@
   }
 }
 
-@media (min-width: 320px) {
+@media (min-width: 0px) {
   .modal {
     &__container {
       display: flex;
       flex-direction: column;
-      align-items: center;
       position: fixed;
-      width: auto;
+      width: 280px;
       max-height: calc(100vh - 40px);
       overflow-y: auto;
       background-color: #ffffff;
       box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
         0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
-      border-radius: 4px;
+      border: none;
       margin: 20px;
       padding: 48px 20px 41px 20px;
     }
@@ -77,10 +76,12 @@
     &__image {
       width: 240px;
       height: 356.57px;
+      display: block;
     }
 
     &__title {
-      font-weight: 700;
+      font-family: 'Roboto';
+      font-weight: 500;
       font-size: 20px;
       line-height: 23px;
       color: var(--dark-text-color);
@@ -99,6 +100,7 @@
         flex-direction: column;
         gap: 10px;
         color: #8c8c8c;
+        font-family: 'Roboto';
         font-style: normal;
         font-weight: 500;
         font-size: 12px;
@@ -108,6 +110,7 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+        font-family: 'Roboto';
         font-style: normal;
         font-weight: 500;
         font-size: 12px;
@@ -116,10 +119,11 @@
     }
 
     &__about {
+      font-family: 'Roboto';
       width: 100%;
       font-weight: 500;
       font-size: 12px;
-      line-height: 16px;
+      line-height: 20px;
       margin-top: 20px;
       & p:not(:last-of-type) {
         margin-bottom: 10px;
@@ -136,6 +140,7 @@
 
     &__btn {
       &--watched {
+        font-family: 'Roboto';
         font-weight: 500;
         font-size: 12px;
         line-height: 16px;
@@ -149,15 +154,17 @@
         cursor: pointer;
         padding-left: 8px;
         padding-right: 8px;
+        outline: none;
       }
       &--queue {
+        font-family: 'Roboto';
         font-weight: 500;
         font-size: 12px;
         line-height: 16px;
         width: 112.58px;
         height: 44px;
         background-color: #fff;
-        border: 1px solid black;
+        border: 1px solid #000000;
         border-radius: 5px;
         cursor: pointer;
         text-transform: uppercase;
@@ -176,6 +183,72 @@
       &:focus {
         background-color: var(--icons-active-color);
         color: #ffffff;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .modal {
+    &__container {
+      width: auto;
+      flex-direction: row;
+      gap: 32px;
+      padding: 42px 30px 40px 28px;
+    }
+    &__details {
+      width: 264px;
+      margin-top: 0px;
+    }
+    &__image {
+      width: 264px;
+      height: 373.55px;
+    }
+    &__btn {
+      &--watched {
+        width: 125.03px;
+      }
+      &--queue {
+        width: 125.03px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal {
+    &__container {
+      width: 882px;
+      height: auto;
+      gap: 30px;
+      padding: 50px 30px 40px 30px;
+    }
+    &__details {
+      width: 396px;
+    }
+    &__title {
+      font-size: 30px;
+    }
+    &__about {
+      line-height: 20px;
+    }
+
+    &__image {
+      width: 396px;
+      height: 477.8px;
+    }
+    &__buttons {
+      justify-content: left;
+      gap: 15px;
+      width: 100%;
+      margin-top: 21px;
+    }
+    &__btn {
+      &--watched {
+        width: 136px;
+      }
+      &--queue {
+        width: 136px;
       }
     }
   }
