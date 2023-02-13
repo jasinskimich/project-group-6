@@ -65,7 +65,7 @@ async function updatingPopularMovieHTML() {
       </p>
     <div class="movie__info">
       <p class="movie__genres">
-        ${genre}&nbsp;
+        ${genre.slice(0,2)}&nbsp;
       </p>
       <p class="movie__year">
         | ${yearOfProduction}
