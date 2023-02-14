@@ -19,7 +19,7 @@
   height: 100%;
   top: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
+  // background: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   transition-property: visibility, opacity;
@@ -149,15 +149,20 @@
       line-height: 16px;
       width: 112.58px;
       height: 44px;
-      background-color: $themeBtn;
-      color: #fff;
-      border: none;
+      background-color: #fff;
+      color: $primary-text;
+      border: 1px solid $primary-text;
       border-radius: 5px;
       text-transform: uppercase;
       cursor: pointer;
       padding-left: 8px;
       padding-right: 8px;
       outline: none;
+      &:focus {
+        background-color: $themeBtn;
+        border: none;
+        color: #fff;
+      }
     }
     &--queue {
       font-family: 'Roboto';
@@ -171,6 +176,11 @@
       border-radius: 5px;
       cursor: pointer;
       text-transform: uppercase;
+      &:focus {
+        background-color: $themeBtn;
+        border: none;
+        color: #fff;
+      }
     }
   }
 
