@@ -36,7 +36,7 @@ function updatingPopularMovies(popularMoviesData) {
 }
 
 async function fetchingPopularMovieDetails() {
-  for (id of popularMovieID) {
+  for (let id of popularMovieID) {
     await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
       .then(response => {
         if (!response.ok) {
