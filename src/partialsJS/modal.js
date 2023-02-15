@@ -4,7 +4,6 @@ const box = document.querySelector('.box');
 const closeModalBtn = document.querySelector('.modal__btn-close');
 const modal = document.querySelector('[data-modal]');
 
-
 export function attachModal() {
   box.addEventListener('click', toggleModalOn);
 }

@@ -60,6 +60,7 @@ async function updatingPopularMovieHTML() {
     <div class="movie__imgbox">
     <img class="movie__img" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" loading="lazy"/>
     </div>
+    <p style="display:none">${movie.id}<p>
     <p class="movie__title">
         <b>${movie.title}</b>
       </p>
