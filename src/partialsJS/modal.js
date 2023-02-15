@@ -1,16 +1,29 @@
 import '../partialsJS/searchingPupularMovies';
-const openModalBtn = document.querySelector('.modal-open');
-const closeModalBtn = document.querySelector('[data-modal-close]');
+
+const box = document.querySelector('.box');
+const closeModalBtn = document.querySelector('.modal__btn-close');
 const modal = document.querySelector('[data-modal]');
 
-openModalBtn.addEventListener('click', toggleModal);
-closeModalBtn.addEventListener('click', toggleModal);
-
-function toggleModal() {
-  modal.classList.toggle('is-hidden');
+export function attachModal() {
+  box.addEventListener('click', toggleModalOn);
 }
-// window.onclick = function (event) {
-//   if (event.target == modal) {
-//     modal.classList.toggle('is-hidden');
-//   }
-// };
+
+function toggleModalOn(event) {
+  let movie = event.target.parentNode;
+  if (movie.nodeName == 'DIV') {
+    movie = movie.parentNode;
+    modal.classList.remove('is-hidden');
+  }
+  closeModalBtn.addEventListener('click', toggleModalOff);
+}
+
+function toggleModalOff() {
+  modal.classList.add('is-hidden');
+  closeModalBtn.removeEventListener('click', toggleModalOff);
+}
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.classList.add('is-hidden');
+  }
+};
