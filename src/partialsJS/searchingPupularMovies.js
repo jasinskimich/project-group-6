@@ -3,7 +3,7 @@ import '../sass/index.scss';
 
 const movieBox = document.querySelector('.box');
 
-apiKey = `6f4e972748a8ce0b96b8a311e5f34016`;
+const apiKey = `6f4e972748a8ce0b96b8a311e5f34016`;
 let popularMovieID = [];
 let popularMovieDetails = [];
 
@@ -58,14 +58,16 @@ async function updatingPopularMovieHTML() {
     yearOfProduction = movie.release_date.substring(0, 4);
     myHTML += `<div class="movie__card">
     <div class="movie__imgbox">
-    <img class="movie__img" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" loading="lazy"/>
+    <img class="movie__img" src="https://image.tmdb.org/t/p/w500${
+      movie.poster_path
+    }" alt="${movie.title} poster" loading="lazy"/>
     </div>
     <p class="movie__title">
         <b>${movie.title}</b>
       </p>
     <div class="movie__info">
       <p class="movie__genres">
-        ${genre.slice(0,2)}&nbsp;
+        ${genre.slice(0, 2)}&nbsp;
       </p>
       <p class="movie__year">
         | ${yearOfProduction}
