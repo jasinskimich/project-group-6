@@ -15,19 +15,10 @@ function toggleModalOn(event) {
     movie = movie.parentNode;
     modal.classList.remove('is-hidden');
   }
-
-openModalBtn.addEventListener('click', toggleModalOn);
-
-
-function toggleModalOn() {
-  openModalBtn.removeEventListener('click', toggleModalOn);
-  modal.classList.toggle('is-hidden');
-
   closeModalBtn.addEventListener('click', toggleModalOff);
 }
 
 function toggleModalOff() {
-
   modal.classList.add('is-hidden');
   closeModalBtn.removeEventListener('click', toggleModalOff);
 }
@@ -38,8 +29,5 @@ window.onclick = function (event) {
   }
 };
 
-  closeModalBtn.removeEventListener('click', toggleModalOff);
-  modal.classList.toggle('is-hidden');
-  openModalBtn.addEventListener('click', toggleModalOn);
-}
+ 
 
