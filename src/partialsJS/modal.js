@@ -16,6 +16,8 @@ function toggleModalOn(event) {
     modal.classList.remove('is-hidden');
   }
   closeModalBtn.addEventListener('click', toggleModalOff);
+
+  console.log(movie.children[1].textContent);
 }
 
 function toggleModalOff() {
@@ -28,6 +30,3 @@ window.onclick = function (event) {
     modal.classList.add('is-hidden');
   }
 };
-
- 
-
