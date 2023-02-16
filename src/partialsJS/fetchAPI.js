@@ -1,28 +1,52 @@
-const searchBar = document.querySelector('#search');
-
 //funkcja fetch API
+let ids = [];
 
-async function getMovie(movie_id) {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=b32896ed8f56a3105cdf45e097423bca&query=${movie_id}`
-  );
-  const movieInfo = await res.json();
-  movieInfo.results.forEach(el => {
-    return el;
-  });
-  return movieInfo.results;
+export async function getMovie(movie_id) {
+  try {
+    const res = await fetch(
+      `https://api.themoviedb.org/3/search/movie?api_key=b32896ed8f56a3105cdf45e097423bca&query=${movie_id}`
+    );
+    const movieInfo = await res.json();
+
+    let movieId = movieInfo.results.map(el => el.id);
+    console.log(movieId);
+    return movieId;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-// funkcja zwracająca obiekty z informacjami na temat danego filmu z API
-// np. el.title zwraca listę tytułów wyszukanych po nazwie
+//getMovie();
 
-searchBar.addEventListener('input', showMovies);
+// .push(el => ids.push(el));
+// async function pullId()
 
-function showMovies(event) {
-  const movieId = event.target.value;
-  getMovie(movieId).then(res => {
-    res.forEach(el => {
-      return console.log(el);
-    });
-  });
+async function getMovieDetails(id) {
+  for (id of ids)
+    await fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=b32896ed8f56a3105cdf45e097423bca`
+    );
+  try {
+    const res = await getMovie(id);
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+
+  // (res => {
+  //   return res.json();
+  // })
+  // .then(res => {
+  //   console.log(res);
+  //   // movieDetails.push(res);
+  // });
 }
+
+getMovieDetails();
+
+// async function show() {
+//   const ids = await getMovie();
+//   getMovieDetails(ids);
+// }
+
+// show();

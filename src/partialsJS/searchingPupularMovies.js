@@ -20,7 +20,7 @@ async function fetchingPopularMovies() {
         },
       }
     );
-    console.log(response.data.results);
+    // console.log(response.data.results);
     return response.data.results;
   } catch (error) {
     console.log(error);
@@ -31,7 +31,7 @@ function updatingPopularMovies(popularMoviesData) {
   popularMoviesData.forEach(movie => {
     popularMovieID.push(movie.id);
   });
-  console.log(popularMovieID);
+  // console.log(popularMovieID);
   return popularMovieID;
 }
 
@@ -46,7 +46,7 @@ async function fetchingPopularMovieDetails() {
       })
       .then(data => popularMovieDetails.push(data));
   }
-  console.log(popularMovieDetails);
+  // console.log(popularMovieDetails);
 }
 
 async function updatingPopularMovieHTML() {
@@ -58,14 +58,16 @@ async function updatingPopularMovieHTML() {
     yearOfProduction = movie.release_date.substring(0, 4);
     myHTML += `<div class="movie__card">
     <div class="movie__imgbox">
-    <img class="movie__img" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" loading="lazy"/>
+    <img class="movie__img" src="https://image.tmdb.org/t/p/w500${
+      movie.poster_path
+    }" alt="${movie.title}" loading="lazy"/>
     </div>
     <p class="movie__title">
         <b>${movie.title}</b>
       </p>
     <div class="movie__info">
       <p class="movie__genres">
-        ${genre.slice(0,2)}&nbsp;
+        ${genre.slice(0, 2)}&nbsp;
       </p>
       <p class="movie__year">
         | ${yearOfProduction}
