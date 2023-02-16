@@ -13,53 +13,69 @@ searchBar.addEventListener('input', inputHandler);
 function inputHandler(event) {
   movieBox.innerHTML = '';
   const output = event.target.value;
-
+  showMovies();
   getMovie(output).then(res => {
-    console.log(res);
-    res.forEach(el => {
-      return ids.push(el.id);
-    });
+    getMovieDetails(res);
+    for (id of res)
+      fetch(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=b32896ed8f56a3105cdf45e097423bca`
+      )
+        .then(res => {
+          return res.json();
+        })
+        .then(res => {
+          movieDetails.push(res);
+        });
+    return movieDetails;
 
-    if (res.length === 0) {
-      notFound.classList.remove('is-hidden');
-      notFound.classList.add('is-not-hidden');
-    } else {
-      notFound.classList.remove('is-not-hidden');
-      notFound.classList.add('is-hidden');
+    // res.forEach(el => {
+    //   console.log(el);
+    //   return ids.push(el.id);
+    // });
 
-      let mySearch = '';
-      let genre;
-
-      movieDetails.forEach(el => {
-        genre = el.genres.map(genre => `${genre.name}`);
-        mySearch += `<div class="movie__card">
-        <div class="movie__imgbox">
-        <img class="movie__img" src="https://image.tmdb.org/t/p/w500${
-          el.poster_path
-        }" alt="${el.title}" loading="lazy"/>
-        </div>
-        <p class="movie__title">
-            <b>${el.title}</b>
-          </p>
-        <div class="movie__info">
-          <p class="movie__genres">
-            ${genre.slice(0, 2)}&nbsp;
-          </p>
-          <p class="movie__year">
-            | ${el.release_date}
-          </p>
-        </div>
-      </div>`;
-      });
-      movieBox.innerHTML += mySearch;
-    }
+    // if (res.length === 0) {
+    //   notFound.classList.remove('is-hidden');
+    //   notFound.classList.add('is-not-hidden');
+    // } else {
+    //   notFound.classList.remove('is-not-hidden');
+    //   notFound.classList.add('is-hidden');
+    // }
   });
+}
+
+console.log(movieDetails);
+async function showMovies() {
+  let mySearch = '';
+  let genre;
+
+  movieDetails.forEach(el => {
+    genre = el.genres.map(genre => `${genre.name}`);
+    mySearch += `<div class="movie__card">
+  <div class="movie__imgbox">
+  <img class="movie__img" src="https://image.tmdb.org/t/p/w500${
+    el.poster_path
+  }" alt="${el.title}" loading="lazy"/>
+  </div>
+  <p class="movie__title">
+      <b>${el.title}</b>
+    </p>
+  <div class="movie__info">
+    <p class="movie__genres">
+      ${genre.slice(0, 2)}&nbsp;
+    </p>
+    <p class="movie__year">
+      | ${el.release_date}
+    </p>
+  </div>
+</div>`;
+  });
+  movieBox.innerHTML += mySearch;
 }
 
 // API detale filmów
 
-async function getMovieDetails() {
-  for (id of ids)
+async function getMovieDetails(res) {
+  for (id of res)
     await fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=b32896ed8f56a3105cdf45e097423bca`
     )
@@ -70,8 +86,8 @@ async function getMovieDetails() {
         movieDetails.push(res);
       });
   console.log(movieDetails);
-  return movieDetails;
+  // return movieDetails;
 }
 
 // API detale filmów
-getMovieDetails();
+// getMovieDetails();
