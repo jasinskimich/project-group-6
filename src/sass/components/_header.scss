@@ -1,9 +1,14 @@
 // MOBILE
 
 @media screen and (min-width: 320px) {
-  .visibility {
+  .is-hidden {
     display: none;
   }
+
+  .is-not-hidden {
+    display: inline-block;
+  }
+
   .header {
     background-color: rgb(64, 62, 62);
     align-items: center;
