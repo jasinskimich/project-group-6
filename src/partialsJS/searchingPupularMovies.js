@@ -3,10 +3,12 @@ import '../sass/index.scss';
 import { attachModal } from '../partialsJS/modal.js';
 const movieBox = document.querySelector('.box');
 
+/* the movie database API key */
 const apiKey = `6f4e972748a8ce0b96b8a311e5f34016`;
 let popularMovieID = [];
 let popularMovieDetails = [];
 
+/* fetching the trending movies according to weekly trend data */
 async function fetchingPopularMovies() {
   const media_type = 'movie';
   const time_window = 'week';
@@ -27,6 +29,7 @@ async function fetchingPopularMovies() {
   }
 }
 
+/* creating an array with IDs of the trending movies according to weekly trend data */
 function updatingPopularMovies(popularMoviesData) {
   popularMoviesData.forEach(movie => {
     popularMovieID.push(movie.id);
@@ -35,6 +38,7 @@ function updatingPopularMovies(popularMoviesData) {
   return popularMovieID;
 }
 
+/* fetching the details of the trending movies using array with IDs created above */
 async function fetchingPopularMovieDetails() {
   for (id of popularMovieID) {
     await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
@@ -49,6 +53,7 @@ async function fetchingPopularMovieDetails() {
   console.log(popularMovieDetails);
 }
 
+/* inserting HTML */
 async function updatingPopularMovieHTML() {
   let myHTML = '';
   let genre;
@@ -58,10 +63,9 @@ async function updatingPopularMovieHTML() {
     yearOfProduction = movie.release_date.substring(0, 4);
     myHTML += `<div class="movie__card">
     <div class="movie__imgbox">
-    <img class="movie__img" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" loading="lazy"/>
-
-    
-
+    <img class="movie__img" src="https://image.tmdb.org/t/p/w500${
+      movie.poster_path
+    }" alt="${movie.title} poster" title="${movie.id}" loading="lazy"/>
     </div>
     <p class="movie__title">
         <b>${movie.title}</b>
@@ -79,12 +83,71 @@ async function updatingPopularMovieHTML() {
   movieBox.innerHTML += myHTML;
 }
 
+/* MODAL */
+
+const modalButtonClose = document.querySelector('.modal__btn-close');
+const modalImage = document.querySelector('.modal__image');
+const modalTitle = document.querySelector('.modal__title');
+const modalDescription = document.querySelector('.modal__descr--info');
+const modalAbout = document.querySelector('.modal__about');
+
+let clickedMovieDetails = [];
+let clickID;
+
+async function fetchingClickedMovieDetails() {
+  await fetch(`https://api.themoviedb.org/3/movie/${clickID}?api_key=${apiKey}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    })
+    .then(data => clickedMovieDetails.push(data));
+}
+
+function updatingPopularMovieModal(clickedMovieDetails) {
+  let genre;
+  clickedMovieDetails.forEach(movie => {
+    genre = movie.genres.map(genre => ` ${genre.name}`);
+    yearOfProduction = movie.release_date.substring(0, 4);
+    modalImage.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    modalImage.alt = `${movie.title} poster`;
+    modalTitle.innerHTML = `${movie.title}`;
+    modalDescription.innerHTML = `
+    <li>
+    <span class="highlight__orange">${movie.vote_average}</span> /
+    <span class="highlight__white">${movie.vote_count}</span>
+  </li>
+  <li>${movie.popularity}</li>
+  <li>${movie.original_title}</li>
+  <li>${genre.slice(0, 2)}&nbsp</li>`;
+    modalAbout.innerHTML = `<p>ABOUT</p>
+  <p>
+    ${movie.overview}
+  </p>`;
+  });
+}
+
+movieBox.addEventListener('click', e => {
+  clickID = Number(e.target.title);
+  console.log(clickID);
+  attachModal(),
+    fetchingClickedMovieDetails(clickID),
+    updatingPopularMovieModal(clickedMovieDetails);
+});
+
+modalButtonClose.addEventListener('click', e => {
+  clickID = null;
+  console.log(clickID);
+  clickedMovieDetails.length = 0;
+});
+
+/* FINAL FUNCTION */
 async function showingpopularMovies() {
   const popularMoviesData = await fetchingPopularMovies();
   updatingPopularMovies(popularMoviesData);
   const popularMovieID = await fetchingPopularMovieDetails();
   updatingPopularMovieHTML(popularMovieID);
-  attachModal();
 }
 
 window.addEventListener('load', showingpopularMovies());
