@@ -78,7 +78,7 @@ async function updatingPopularMovieHTML() {
   movieBox.innerHTML += myHTML;
 }
 
-async function showingpopularMovies() {
+export async function showingpopularMovies() {
   const popularMoviesData = await fetchingPopularMovies();
   updatingPopularMovies(popularMoviesData);
   const popularMovieID = await fetchingPopularMovieDetails();
