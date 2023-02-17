@@ -26,11 +26,11 @@ function inputHandler(event) {
 
 async function showMovies(el) {
   let genre;
-  let yearOfProduction;
+  let releaseDate;
   const mySearch = el
     .map(el => {
       genre = el.genres.map(genre => ` ${genre.name}`);
-      yearOfProduction = el.release_date.substring(0, 4);
+      releaseDate = el.release_date.substring(0, 4);
       return `<div class="movie__card">
   <div class="movie__imgbox">
   <img class="movie__img" src="https://image.tmdb.org/t/p/w500${
@@ -45,7 +45,7 @@ async function showMovies(el) {
       ${genre.slice(0, 2)}
     </p>
     <p class="movie__year">
-      | ${yearOfProduction}
+      | ${releaseDate}
     </p>
   </div>
 </div>`;
