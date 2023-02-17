@@ -55,10 +55,22 @@
     gap: 30px;
     padding: 84px;
   }
+  .library-box{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 /***************** DESKTOP *****************/
 @media screen and (min-width: 1024px) {
   .box {
     padding: 57px;
+  }
+  .library-box{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
