@@ -13,7 +13,6 @@ function inputHandler(event) {
   const output = event.target[0].value;
   getMovie(output.trim()).then(res => {
     if (res.length === 0) {
-      console.log();
       notFound.classList.remove('is-hidden');
       notFound.classList.add('is-not-hidden');
       showingpopularMovies();
