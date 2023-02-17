@@ -26,6 +26,7 @@ function inputHandler(event) {
 
 async function showMovies(el) {
   let genre;
+  let yearOfProduction;
   const mySearch = el
     .map(el => {
       genre = el.genres.map(genre => ` ${genre.name}`);
