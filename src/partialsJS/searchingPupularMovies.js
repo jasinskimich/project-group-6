@@ -1,7 +1,9 @@
 import axios from 'axios';
 import '../sass/index.scss';
 import { attachModal } from '../partialsJS/modal.js';
+
 const movieBox = document.querySelector('.box');
+const loader = document.querySelector('.loader');
 
 const apiKey = `6f4e972748a8ce0b96b8a311e5f34016`;
 let popularMovieID = [];
@@ -83,6 +85,7 @@ export async function showingpopularMovies() {
   const popularMoviesData = await fetchingPopularMovies();
   updatingPopularMovies(popularMoviesData);
   const popularMovieID = await fetchingPopularMovieDetails();
+  loader.classList.add('loader--visibility');
   updatingPopularMovieHTML(popularMovieID);
   attachModal();
 }

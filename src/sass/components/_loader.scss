@@ -1,0 +1,52 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  flex-direction: row;
+  background-color: rgb(40, 37, 31);
+}
+
+.loader--visibility {
+  display: none;
+  padding: 0;
+}
+
+.loader__container {
+  border-radius: 50%;
+  border: 8px solid rgba(255, 255, 255, 0.247);
+  border-top: 8px solid #ff0019;
+  border-left: 8px solid rgba(99, 99, 98, 0.596);
+  border-bottom: 8px solid #ffffff;
+  height: 50px;
+  width: 50px;
+  animation: spin 3s linear infinite;
+}
+
+.loader__text {
+  padding-right: 15px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 14px;
+  color: rgb(255, 255, 255);
+  width: 110px;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.loader__text--you {
+  font-size: 18px;
+  color: #ff0019;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
