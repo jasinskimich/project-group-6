@@ -4,7 +4,9 @@ async function loadLibrary(id){
     await fetch(`${url}movie/${id}?api_key=${apiKey}`)
     .then(movie => movie.json())
     .then(movie => {
-        console.log(movie);
+      let genres = '';
+        genres += movie.genres[0].name + ', ';
+        genres += movie.genres[1].name;
         const card = document.createElement("div");
         let myHTML = `<div class="movie__card">
         <div class="movie__imgbox">
@@ -16,15 +18,15 @@ async function loadLibrary(id){
           </p>
         <div class="movie__info">
           <p class="movie__genres">
-            ${movie.genres.slice(0, 2)}&nbsp;
+            ${genres}&nbsp;
           </p>
           <p class="movie__year">
             | ${movie.release_date.substring(0, 4)}
           </p>
         </div>
       </div>`;
-      box.innerHTML= myHTML;
-      box.insertAdjacentElement("afterbegin", card);
+      card.innerHTML= myHTML;
+      box.append(card);
     })
     .catch(error => {console.log(error);})}
 
@@ -35,18 +37,17 @@ const queueBtn = document.querySelector("#options__button--queue");
 watchedBtn.addEventListener("click", clearScreen);
 queueBtn.addEventListener("click", clearScreen);
 function clearScreen(){
-    if(Array.isArray(box.children)){
-        box.children.forEach(()=>{
-            box.removeChild(box.children[0]);
-        }
-      )
+  console.log(box.children);
+    for(let i = 0; i <= box.children.length; i++ ){
+        box.removeChild(box.children[0]);
     }
+    loadScreen();
 }
 
+function loadScreen(){
 if(watchedBtn.classList.contains('options__button--clicked')){
     let watched = localStorage.getItem("watched");
     watched = watched.split(";");
-    console.log(watched);
     watched.forEach(element => {
         if(element != ""){
             loadLibrary(element);
@@ -56,12 +57,11 @@ if(watchedBtn.classList.contains('options__button--clicked')){
 if(queueBtn.classList.contains('options__button--clicked')){
 let queue = localStorage.getItem("queue");
 queue = queue.split(";");
-console.log(queue);
 queue.forEach(element => {
     if(element != ""){
         loadLibrary(element);
     }
 });}
+}
 
-
-//615777 640146 505642"
+loadScreen();
