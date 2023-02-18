@@ -38,6 +38,7 @@ async function showMovies(el) {
   }" alt="${el.title}" loading="lazy"/>
   </div>
   <p class="movie__title">
+  <p class="movie__title">
       <b>${el.title}</b>
     </p>
   <div class="movie__info">
