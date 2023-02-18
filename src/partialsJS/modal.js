@@ -3,6 +3,8 @@ import '../partialsJS/searchingPupularMovies';
 const box = document.querySelector('.box');
 const closeModalBtn = document.querySelector('.modal__btn-close');
 const modal = document.querySelector('[data-modal]');
+const addToWatched = document.querySelector(".modal__btn--watched");
+const addToQueue = document.querySelector(".modal__btn--queue");
 
 localStorage.setItem("queue", "");
 localStorage.setItem("watched", "")
@@ -35,30 +37,6 @@ async function refershModal(id){
     });
     description.children[3].textContent = content.slice(0, -2);
     details.children[2].children[1].textContent = r.overview;
-    const addToWatched = document.querySelector(".modal__btn--watched");
-    const addToQueue = document.querySelector(".modal__btn--queue");
-    addToWatched.addEventListener("click", ()=>{
-      let watched = localStorage.getItem("watched");
-      let check = watched.split(";");
-      if(check.includes(id)){
-        return 0;
-      }else{
-        watched = watched + id + ';';
-        localStorage.removeItem("watched");
-        localStorage.setItem("watched", watched);
-      }
-    });
-    addToQueue.addEventListener("click", ()=>{
-      let queue = localStorage.getItem("queue");
-      let check = queue.split(";");
-      if(check.includes(id)){
-        return 0;
-      }else{
-        queue = queue + id + ';';
-        localStorage.removeItem("queue");
-        localStorage.setItem("queue", queue);
-      }
-    });
   })
   .catch(error => {
     console.log('error: ' + error);}
@@ -73,12 +51,39 @@ function toggleModalOn(event) {
   }
   closeModalBtn.addEventListener('click', toggleModalOff);
 
-  refershModal(movie.children[1].textContent)
+  const id = movie.children[1].textContent;
+  
+  refershModal(id);
+
+    addToWatched.addEventListener("click", toWatched = ()=>{
+      let watched = localStorage.getItem("watched");
+      let check = watched.split(";");
+      if(check.includes(id)){
+        return 0;
+      }else{
+        watched = watched + id + ';';
+        localStorage.removeItem("watched");
+        localStorage.setItem("watched", watched);
+      }
+    });
+    addToQueue.addEventListener("click", toQueue = ()=>{
+      let queue = localStorage.getItem("queue");
+      let check = queue.split(";");
+      if(check.includes(id)){
+        return 0;
+      }else{
+        queue = queue + id + ';';
+        localStorage.removeItem("queue");
+        localStorage.setItem("queue", queue);
+      }
+    });
 }
 
 function toggleModalOff() {
   modal.classList.add('is-hidden');
   closeModalBtn.removeEventListener('click', toggleModalOff);
+  addToQueue.removeEventListener('click', toQueue);
+  addToWatched.removeEventListener('click', toWatched);
 }
 
 window.onclick = function (event) {
