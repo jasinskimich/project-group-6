@@ -11,7 +11,7 @@ export async function getMovie(movie_id) {
     );
     const movieInfo = await res.json();
     let movieId = movieInfo.results.map(el => el.id);
-    for (id of movieId)
+    for (let id of movieId)
       await fetch(
         `https://api.themoviedb.org/3/movie/${id}?api_key=b32896ed8f56a3105cdf45e097423bca`
       )
