@@ -37,7 +37,7 @@ async function showMovies(el) {
     el.poster_path
   }" alt="${el.title}" loading="lazy"/>
   </div>
-  <p class="movie__title">
+  <p style="display:none">${el.id}<p>
   <p class="movie__title">
       <b>${el.title}</b>
     </p>
