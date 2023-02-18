@@ -83,7 +83,7 @@ function toggleModalOn(event) {
         localStorage.removeItem("queue");
         localStorage.setItem("queue", queue);
       }
-    });
+    })};
 
 async function refershModal(id) {
   const url = 'https://api.themoviedb.org/3/';
