@@ -60,7 +60,9 @@ async function updatingPopularMovieHTML() {
     yearOfProduction = movie.release_date.substring(0, 4);
     myHTML += `<div class="movie__card">
     <div class="movie__imgbox">
-    <img class="movie__img" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" 
+    <img class="movie__img" src="https://image.tmdb.org/t/p/w500${
+      movie.poster_path
+    }" 
       alt="${movie.title}" loading="lazy"/>
     </div>
     <p style="display:none">${movie.id}<p>
@@ -80,7 +82,8 @@ async function updatingPopularMovieHTML() {
   movieBox.innerHTML += myHTML;
 }
 
-export async function showingpopularMovies() {
+export async function showingpopularMovies(e) {
+  e.preventDefault();
   const popularMoviesData = await fetchingPopularMovies();
   updatingPopularMovies(popularMoviesData);
   const popularMovieID = await fetchingPopularMovieDetails();
@@ -89,4 +92,4 @@ export async function showingpopularMovies() {
   attachModal();
 }
 
-window.addEventListener('load', showingpopularMovies());
+window.addEventListener('load', showingpopularMovies);
