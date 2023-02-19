@@ -23,6 +23,11 @@
   }
   &__link {
     margin: 0 auto;
+    &--text {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    
   }
   &__img {
     position: relative;
