@@ -61,7 +61,7 @@ function renderMoviePaginator(total_results, selectedPage = 1, pageSize = 10) {
         select.addEventListener('change', (event) => {
             const selectedPage = event.target.value;
             const paginatorElem = document.getElementById('pagination-container');
-            const movieList = document.getElementById('movie-container');
+            const movieList = document.querySelector('.box');
           paginatorElem.classList.add('hidden');
           movieList.classList.add('hidden');
             fetchJsonResponse(`https://api.themoviedb.org/3/trending/movie/week/?page=${selectedPage}`)
