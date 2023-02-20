@@ -4,12 +4,14 @@ import { getMovie } from '../partialsJS/fetchAPI';
 const searchBar = document.querySelector('#search-form');
 const movieBox = document.querySelector('.box');
 const notFound = document.querySelector('.search__text');
+const loader = document.querySelector('.loader');
 
 searchBar.addEventListener('submit', inputHandler);
 
 // funkcja event listener
 
 function inputHandler(event) {
+  loader.classList.remove('loader--visibility');
   event.preventDefault();
   const output = event.target[0].value;
   getMovie(output.trim()).then(res => {
