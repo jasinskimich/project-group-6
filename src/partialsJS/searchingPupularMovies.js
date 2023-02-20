@@ -1,99 +1,39 @@
 import axios from 'axios';
 import '../sass/index.scss';
 import { attachModal } from '../partialsJS/modal.js';
-
 const movieBox = document.querySelector('.box');
 const loader = document.querySelector('.loader');
-
 const apiKey = `6f4e972748a8ce0b96b8a311e5f34016`;
+const paginatorElem = document.getElementById('pagination-container');
+const select = document.getElementById('movie-pagination');
+
 let popularMovieID = [];
 let popularMovieDetails = [];
+let pagination = [];
 
-export async function fetchingPopularMovies() {
+async function fetchingPopularMovies(page = 1) {
   const media_type = 'movie';
   const time_window = 'week';
-
   try {
     const response = await axios.get(
-      `https://api.themoviedb.org/3/trending/${media_type}/${time_window}`,
-      {
-        params: {
-          api_key: `6f4e972748a8ce0b96b8a311e5f34016`,
-        },
-      }
+      `https://api.themoviedb.org/3/trending/${media_type}/${time_window}?api_key=${apiKey}&page=${page}`
     );
-    // console.log(response.data.results);
-    return response.data.results;
+    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.log(error);
   }
 }
-// Paginacja
-console.log('Pagination');
-fetchJsonResponse(
-  'https://api.themoviedb.org/3/trending/movie/week?api_key=6f4e972748a8ce0b96b8a311e5f34016'
-).then(response => {
-  renderMoviePaginator(response['total_results']);
-  console.log('total_results', response['total_results']);
-  console.log('results', response['results']);
-  renderMovieList(response['results']);
-});
-function fetchJsonResponse(url) {
-  return fetch(url)
-    .then(response => response.json())
-    .catch(error => console.log('Error: ', error));
-}
-function renderMoviePaginator(total_results, selectedPage = 1, pageSize = 10) {
-  const pages = Math.ceil(total_results / pageSize);
-  console.log('pages', pages);
-  const select = document.getElementById('movie-pagination');
-  select.innerHTML = '';
-  for (let i = 1; i <= pages; i++) {
-    const option = document.createElement('option');
-    option.innerText = 'Page ' + i;
-    option.value = i;
-    if (i === Number(selectedPage)) {
-      option.setAttribute('selected', true);
-    }
-    select.append(option);
-    // console.log(pages);
-  }
-  select.addEventListener('change', event => {
-    const selectedPage = event.target.value;
-    const paginatorElem = document.getElementById('pagination-container');
-    const movieList = document.querySelector('.box');
-    paginatorElem.classList.add('hidden');
-    movieList.classList.add('hidden');
-    fetchJsonResponse(
-      `https://api.themoviedb.org/3/trending/movie/week/?page=${selectedPage}`
-    )
-      .then(response => {
-        renderMoviePaginator(response['total_results'], selectedPage);
-        renderMovieList(response['results']);
-      })
-      .then(() => {
-        setTimeout(() => {
-          paginatorElem.classList.remove('hidden');
-          movieList.classList.remove('hidden');
-        }, 1500);
-      });
-  });
-}
-function renderMovieList(movie) {
-  const movieList = document.querySelector('.box');
-  movieList.innerHTML = '';
-}
-// koniec paginacji;
 
-export function updatingPopularMovies(popularMoviesData) {
-  popularMoviesData.forEach(movie => {
+function renderMovieList(popularMoviesData) {
+  popularMoviesData.results.forEach(movie => {
     popularMovieID.push(movie.id);
   });
-  // console.log(popularMovieID);
+  console.log(popularMovieID);
   return popularMovieID;
 }
 
-export async function fetchingPopularMovieDetails() {
+async function fetchingPopularMovieDetails() {
   for (let id of popularMovieID) {
     await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
       .then(response => {
@@ -104,10 +44,10 @@ export async function fetchingPopularMovieDetails() {
       })
       .then(data => popularMovieDetails.push(data));
   }
-  // console.log(popularMovieDetails);
+  popularMovieID.splice(0, popularMovieID.length);
+  console.log(popularMovieDetails);
 }
-
-export async function updatingPopularMovieHTML() {
+async function updatingPopularMovieHTML() {
   let myHTML = '';
   let genre;
   let yearOfProduction;
@@ -118,7 +58,7 @@ export async function updatingPopularMovieHTML() {
     <div class="movie__imgbox">
     <img class="movie__img" src="https://image.tmdb.org/t/p/w500${
       movie.poster_path
-    }" 
+    }"
       alt="${movie.title}" loading="lazy"/>
     </div>
     <p style="display:none">${movie.id}<p>
@@ -136,12 +76,14 @@ export async function updatingPopularMovieHTML() {
   </div>`;
   });
   movieBox.innerHTML += myHTML;
+  popularMovieDetails.splice(0, popularMovieDetails.length);
 }
 
-async function showingpopularMovies(e) {
+export async function showingpopularMovies(e) {
   e.preventDefault();
   const popularMoviesData = await fetchingPopularMovies();
-  updatingPopularMovies(popularMoviesData);
+  renderMoviePaginator(popularMoviesData);
+  renderMovieList(popularMoviesData);
   const popularMovieID = await fetchingPopularMovieDetails();
   loader.classList.add('loader--visibility');
   updatingPopularMovieHTML(popularMovieID);
@@ -149,3 +91,34 @@ async function showingpopularMovies(e) {
 }
 
 window.addEventListener('load', showingpopularMovies);
+
+function renderMoviePaginator(popularMoviesData) {
+  const pages = popularMoviesData.total_results / 20;
+  select.innerHTML = '';
+  for (let i = 1; i <= pages; i++) {
+    const option = document.createElement('option');
+    option.innerText = 'Page ' + i;
+    option.value = i;
+    if (i === Number(popularMoviesData.page)) {
+      option.setAttribute('selected', true);
+    }
+    select.append(option);
+    // console.log(pages);
+  }
+  select.addEventListener('change', async function hihi(e) {
+    window.removeEventListener('load', showingpopularMovies);
+    newpage = e.target.value;
+    console.log(e.target.value);
+    paginatorElem.classList.add('hidden');
+    movieBox.classList.add('hidden');
+    movieBox.innerHTML = '';
+    popularMoviesData = await fetchingPopularMovies(newpage);
+    renderMovieList(popularMoviesData);
+    popularMovieID = await fetchingPopularMovieDetails();
+    updatingPopularMovieHTML(popularMovieID);
+    setTimeout(() => {
+      paginatorElem.classList.remove('hidden');
+      movieBox.classList.remove('hidden');
+    }, 1500);
+  });
+}
