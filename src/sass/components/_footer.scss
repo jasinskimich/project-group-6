@@ -11,7 +11,7 @@
     text-align: center;
     gap: 9px;
     font-family: Roboto;
-    color: $footerColor;
+    
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -27,7 +27,6 @@
       text-decoration: underline;
       cursor: pointer;
     }
-    
   }
   &__img {
     position: relative;
@@ -60,6 +59,7 @@
 /***************** DESKTOP *****************/
 @media screen and (min-width: 1024px) {
   .footer {
+    
     &__text {
       padding-left: 271px;
     }
