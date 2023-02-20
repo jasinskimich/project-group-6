@@ -1,17 +1,17 @@
 .pagination {
-    height: 100px;
-    background-color: rgb(212, 221, 221);
+  height: 100px;
+  background-color: white;
 }
 .select-pages {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #movie-pagination {
-    height: 50px;
-    width: 130px;
-    margin-top: 10px;
-    background-color:rgb(212, 221, 221);
-    border: solid #ff6b01 5px;
-    border-radius: 10px;
+  height: 50px;
+  width: 130px;
+  margin-top: 10px;
+  background-color: rgb(212, 221, 221);
+  border: solid #ff6b01 5px;
+  border-radius: 10px;
 }
