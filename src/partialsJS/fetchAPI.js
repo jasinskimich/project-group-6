@@ -3,6 +3,7 @@
 let ids = [];
 const searchBar = document.querySelector('#search-form');
 searchBar.addEventListener('keypress', clear);
+const loader = document.querySelector('.loader');
 
 export async function getMovie(movie_id) {
   try {
@@ -10,6 +11,7 @@ export async function getMovie(movie_id) {
     const res = await fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=b32896ed8f56a3105cdf45e097423bca&query=${movie_id}`
     );
+    loader.classList.add('loader--visibility');
     const movieInfo = await res.json();
     let movieId = movieInfo.results.map(el => el.id);
     // funkcja, która dla każdego wyszukanego filmu pobiera detale
