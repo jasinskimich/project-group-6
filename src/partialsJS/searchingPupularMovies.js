@@ -9,7 +9,7 @@ const apiKey = `6f4e972748a8ce0b96b8a311e5f34016`;
 let popularMovieID = [];
 let popularMovieDetails = [];
 
-async function fetchingPopularMovies() {
+export async function fetchingPopularMovies() {
   const media_type = 'movie';
   const time_window = 'week';
 
@@ -30,59 +30,62 @@ async function fetchingPopularMovies() {
 }
 // Paginacja
 console.log('Pagination');
-fetchJsonResponse((
-        'https://api.themoviedb.org/3/trending/movie/week?api_key=6f4e972748a8ce0b96b8a311e5f34016'
-        )).then(response => {
-          renderMoviePaginator(response['total_results']);
-          console.log('total_results', response['total_results']);
-          console.log('results', response['results']);
-                renderMovieList(response['results']);
-            })
+fetchJsonResponse(
+  'https://api.themoviedb.org/3/trending/movie/week?api_key=6f4e972748a8ce0b96b8a311e5f34016'
+).then(response => {
+  renderMoviePaginator(response['total_results']);
+  console.log('total_results', response['total_results']);
+  console.log('results', response['results']);
+  renderMovieList(response['results']);
+});
 function fetchJsonResponse(url) {
-        return fetch(url)
-          .then(response =>
-            response.json())
-            .catch(error => console.log('Error: ', error))}  
+  return fetch(url)
+    .then(response => response.json())
+    .catch(error => console.log('Error: ', error));
+}
 function renderMoviePaginator(total_results, selectedPage = 1, pageSize = 10) {
-   const pages = Math.ceil(total_results / pageSize);
-   console.log('pages', pages);
-        const select = document.getElementById('movie-pagination');
-        select.innerHTML = '';
-        for (let i = 1; i <= pages; i++) {
-            const option = document.createElement('option');
-            option.innerText = 'Page ' + i;
-            option.value = i;
-            if (i === Number(selectedPage)) {
-                option.setAttribute('selected', true)
-            }
-          select.append(option);
-          // console.log(pages);
-        }
-        select.addEventListener('change', (event) => {
-            const selectedPage = event.target.value;
-            const paginatorElem = document.getElementById('pagination-container');
-            const movieList = document.querySelector('.box');
-          paginatorElem.classList.add('hidden');
-          movieList.classList.add('hidden');
-            fetchJsonResponse(`https://api.themoviedb.org/3/trending/movie/week/?page=${selectedPage}`)
-                .then(response => {
-                    renderMoviePaginator(response['total_results'], selectedPage);
-                    renderMovieList(response['results']);
-                }).then(() => {
-                setTimeout(() => {
-                    paginatorElem.classList.remove('hidden');
-                    movieList.classList.remove('hidden');
-                }, 1500);
-            });
-        });
+  const pages = Math.ceil(total_results / pageSize);
+  console.log('pages', pages);
+  const select = document.getElementById('movie-pagination');
+  select.innerHTML = '';
+  for (let i = 1; i <= pages; i++) {
+    const option = document.createElement('option');
+    option.innerText = 'Page ' + i;
+    option.value = i;
+    if (i === Number(selectedPage)) {
+      option.setAttribute('selected', true);
     }
-    function renderMovieList(movie) {
-        const movieList = document.querySelector('.box');
-        movieList.innerHTML = '';
-    }
+    select.append(option);
+    // console.log(pages);
+  }
+  select.addEventListener('change', event => {
+    const selectedPage = event.target.value;
+    const paginatorElem = document.getElementById('pagination-container');
+    const movieList = document.querySelector('.box');
+    paginatorElem.classList.add('hidden');
+    movieList.classList.add('hidden');
+    fetchJsonResponse(
+      `https://api.themoviedb.org/3/trending/movie/week/?page=${selectedPage}`
+    )
+      .then(response => {
+        renderMoviePaginator(response['total_results'], selectedPage);
+        renderMovieList(response['results']);
+      })
+      .then(() => {
+        setTimeout(() => {
+          paginatorElem.classList.remove('hidden');
+          movieList.classList.remove('hidden');
+        }, 1500);
+      });
+  });
+}
+function renderMovieList(movie) {
+  const movieList = document.querySelector('.box');
+  movieList.innerHTML = '';
+}
 // koniec paginacji;
 
-function updatingPopularMovies(popularMoviesData) {
+export function updatingPopularMovies(popularMoviesData) {
   popularMoviesData.forEach(movie => {
     popularMovieID.push(movie.id);
   });
@@ -90,7 +93,7 @@ function updatingPopularMovies(popularMoviesData) {
   return popularMovieID;
 }
 
-async function fetchingPopularMovieDetails() {
+export async function fetchingPopularMovieDetails() {
   for (let id of popularMovieID) {
     await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
       .then(response => {
@@ -104,7 +107,7 @@ async function fetchingPopularMovieDetails() {
   // console.log(popularMovieDetails);
 }
 
-async function updatingPopularMovieHTML() {
+export async function updatingPopularMovieHTML() {
   let myHTML = '';
   let genre;
   let yearOfProduction;
@@ -135,7 +138,7 @@ async function updatingPopularMovieHTML() {
   movieBox.innerHTML += myHTML;
 }
 
-export async function showingpopularMovies(e) {
+async function showingpopularMovies(e) {
   e.preventDefault();
   const popularMoviesData = await fetchingPopularMovies();
   updatingPopularMovies(popularMoviesData);

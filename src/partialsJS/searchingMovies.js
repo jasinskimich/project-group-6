@@ -1,6 +1,5 @@
 import '../sass/index.scss';
 import { getMovie } from '../partialsJS/fetchAPI';
-import { showingpopularMovies } from '../partialsJS/searchingPupularMovies';
 
 const searchBar = document.querySelector('#search-form');
 const movieBox = document.querySelector('.box');
@@ -8,14 +7,16 @@ const notFound = document.querySelector('.search__text');
 
 searchBar.addEventListener('submit', inputHandler);
 
+// funkcja event listener
+
 function inputHandler(event) {
   event.preventDefault();
   const output = event.target[0].value;
   getMovie(output.trim()).then(res => {
-    if (res.length === 0) {
+    if (res.length === 0 || output === '') {
       notFound.classList.remove('is-hidden');
       notFound.classList.add('is-not-hidden');
-      showingpopularMovies();
+      movieBox.innerHTML = '';
     } else {
       notFound.classList.remove('is-not-hidden');
       notFound.classList.add('is-hidden');
@@ -23,6 +24,8 @@ function inputHandler(event) {
     }
   });
 }
+
+// render karty filmu
 
 async function showMovies(el) {
   let genre;
