@@ -18,7 +18,7 @@ async function fetchingPopularMovies(page = 1) {
     const response = await axios.get(
       `https://api.themoviedb.org/3/trending/${media_type}/${time_window}?api_key=${apiKey}&page=${page}`
     );
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -29,7 +29,7 @@ function renderMovieList(popularMoviesData) {
   popularMoviesData.results.forEach(movie => {
     popularMovieID.push(movie.id);
   });
-  console.log(popularMovieID);
+  // console.log(popularMovieID);
   return popularMovieID;
 }
 
@@ -44,7 +44,7 @@ async function fetchingPopularMovieDetails() {
       })
       .then(data => popularMovieDetails.push(data));
   }
-  console.log(popularMovieDetails);
+  // console.log(popularMovieDetails);
 }
 async function updatingPopularMovieHTML() {
   let myHTML = '';
