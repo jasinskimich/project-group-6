@@ -65,3 +65,23 @@ queue.forEach(element => {
 }
 
 loadScreen();
+
+
+// console.log('Pagination');
+// const select = document.getElementById('movie-pagination');
+
+// function renderMoviePaginator() {
+//   const pages = 2;
+//   select.innerHTML = '';
+//   for (let i = 1; i <= pages; i++) {
+//     const option = document.createElement('option');
+    
+//     option.innerText = 'Page ' + i;
+//     option.value = i;
+//     if (i === Number(1)) {
+//       option.setAttribute('selected', true);
+//     }
+//     select.append(option);
+//     console.log(pages);
+//   }
+// }
