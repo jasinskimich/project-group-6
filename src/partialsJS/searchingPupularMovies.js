@@ -1,6 +1,7 @@
 import axios from 'axios';
 import '../sass/index.scss';
 import { attachModal } from '../partialsJS/modal.js';
+
 const movieBox = document.querySelector('.box');
 const loader = document.querySelector('.loader');
 const apiKey = `6f4e972748a8ce0b96b8a311e5f34016`;
@@ -9,7 +10,6 @@ const select = document.getElementById('movie-pagination');
 
 let popularMovieID = [];
 let popularMovieDetails = [];
-let pagination = [];
 
 async function fetchingPopularMovies(page = 1) {
   const media_type = 'movie';
@@ -44,7 +44,6 @@ async function fetchingPopularMovieDetails() {
       })
       .then(data => popularMovieDetails.push(data));
   }
-  popularMovieID.splice(0, popularMovieID.length);
   console.log(popularMovieDetails);
 }
 async function updatingPopularMovieHTML() {
@@ -76,11 +75,9 @@ async function updatingPopularMovieHTML() {
   </div>`;
   });
   movieBox.innerHTML += myHTML;
-  popularMovieDetails.splice(0, popularMovieDetails.length);
 }
 
-export async function showingpopularMovies(e) {
-  e.preventDefault();
+export async function showingpopularMovies() {
   const popularMoviesData = await fetchingPopularMovies();
   renderMoviePaginator(popularMoviesData);
   renderMovieList(popularMoviesData);
@@ -92,7 +89,7 @@ export async function showingpopularMovies(e) {
 
 window.addEventListener('load', showingpopularMovies);
 
-function renderMoviePaginator(popularMoviesData) {
+export function renderMoviePaginator(popularMoviesData) {
   const pages = popularMoviesData.total_results / 20;
   select.innerHTML = '';
   for (let i = 1; i <= pages; i++) {
@@ -105,17 +102,23 @@ function renderMoviePaginator(popularMoviesData) {
     select.append(option);
     // console.log(pages);
   }
-  select.addEventListener('change', async function hihi(e) {
+  select.addEventListener('change', async function showingNextPage(e) {
     window.removeEventListener('load', showingpopularMovies);
+    loader.classList.remove('loader--visibility');
     newpage = e.target.value;
     console.log(e.target.value);
     paginatorElem.classList.add('hidden');
     movieBox.classList.add('hidden');
     movieBox.innerHTML = '';
+    popularMovieDetails.splice(0, popularMovieID.length);
+    popularMovieID.splice(0, popularMovieID.length);
     popularMoviesData = await fetchingPopularMovies(newpage);
     renderMovieList(popularMoviesData);
     popularMovieID = await fetchingPopularMovieDetails();
     updatingPopularMovieHTML(popularMovieID);
+    popularMovieDetails = [];
+    popularMovieID = [];
+    loader.classList.add('loader--visibility');
     setTimeout(() => {
       paginatorElem.classList.remove('hidden');
       movieBox.classList.remove('hidden');
