@@ -105,7 +105,7 @@ export function renderMoviePaginator(popularMoviesData) {
   select.addEventListener('change', async function showingNextPage(e) {
     window.removeEventListener('load', showingpopularMovies);
     loader.classList.remove('loader--visibility');
-    newpage = e.target.value;
+    let newpage = e.target.value;
     console.log(e.target.value);
     paginatorElem.classList.add('hidden');
     movieBox.classList.add('hidden');
