@@ -59,7 +59,7 @@
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    .header__background {
+    .headerLibrary__background {
       background-image: url(/src/images/mobileBackgroundLibrary2x.png);
     }
   }
@@ -88,7 +88,7 @@
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    .header__background {
+    .headerLibrary__background {
       background-image: url(/src/images/tabletBackgroundLibrary2x.png);
     }
   }
@@ -117,7 +117,7 @@
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    .header__background {
+    .headerLibrary__background {
       background-image: url(/src/images/desktopBackgroundLibrary2x.png);
     }
   }
