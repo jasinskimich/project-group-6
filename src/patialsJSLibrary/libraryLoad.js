@@ -39,10 +39,12 @@ const box = document.querySelector('.library-box');
 const watchedBtn = document.querySelector('#options__button--watched');
 const queueBtn = document.querySelector('#options__button--queue');
 
+displayWatched();
+
 watchedBtn.addEventListener('click', displayWatched);
 queueBtn.addEventListener('click', displayQueue);
 
-function displayWatched() {
+export function displayWatched() {
   const localStorageWatched = localStorage.getItem('watched');
   if (localStorageWatched === '') {
     box.innerHTML = '';
@@ -52,7 +54,6 @@ function displayWatched() {
     WatchedParsed.forEach(ids => {
       loadMovies(ids);
     });
-    console.log(WatchedParsed);
   }
 }
 
@@ -66,10 +67,5 @@ function displayQueue() {
     QueueParsed.forEach(id => {
       loadMovies(id);
     });
-    console.log(QueueParsed);
   }
 }
-
-displayWatched();
-displayQueue();
-
