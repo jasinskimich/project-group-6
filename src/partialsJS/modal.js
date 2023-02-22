@@ -10,7 +10,7 @@ const addToQueue = document.querySelector('.modal__btn--queue');
 localStorage.setItem('queue', '');
 localStorage.setItem('watched', '');
 
-// nowe handlery
+// handlery Queue i Watch
 
 addToWatched.addEventListener('click', () => {
   watchHandler();
@@ -19,8 +19,8 @@ addToQueue.addEventListener('click', () => {
   queueHandler();
 });
 
-function watchHandler(id) {
-  console.log(id);
+function watchHandler() {
+  let id = addToWatched.getAttribute('data-id');
   const localStorageWatched = localStorage.getItem('watched');
   let localStorageWatchedParsed = [];
   if (localStorageWatched) {
@@ -28,24 +28,20 @@ function watchHandler(id) {
   }
   localStorageWatchedParsed.push(id);
   const currentArrayStringified = JSON.stringify(localStorageWatchedParsed);
-
   localStorage.setItem('watched', currentArrayStringified);
 }
 
-function queueHandler(id) {
-  console.log(id);
+function queueHandler() {
+  let id = addToQueue.getAttribute('data-id');
   const localStorageQueue = localStorage.getItem('queue');
   let localStorageQueueParsed = [];
   if (localStorageQueue) {
     localStorageQueueParsed = JSON.parse(localStorageQueue);
   }
   localStorageQueueParsed.push(id);
-
   const currentArrayStringified = JSON.stringify(localStorageQueueParsed);
   localStorage.setItem('queue', currentArrayStringified);
 }
-
-// koniec nowych handlerów
 
 export function attachModal() {
   box.addEventListener('click', toggleModalOn);
@@ -58,7 +54,6 @@ async function refershModal(id) {
     .then(r => r.json())
     .then(r => {
       // update karta filmowa modal
-      console.log(r);
       const details = modal.children[0].children[2];
       const description = details.children[1].children[1];
       modal.children[0].children[1].src = `https://image.tmdb.org/t/p/w500${r.poster_path}`;
@@ -76,50 +71,16 @@ async function refershModal(id) {
       });
       description.children[3].textContent = content.slice(0, -2);
       details.children[2].children[1].textContent = r.overview;
-      // koniec karty filmowej modal?
-
-      // stare add watch/queue
-
-      // addToWatched.addEventListener('click', () => {
-      //   let watched = localStorage.getItem('watched');
-      //   let check = watched.split(';');
-      //   if (check.includes(id)) {
-      //     return 0;
-      //   } else {
-      //     watched = watched + id + ';';
-      //     localStorage.removeItem('watched');
-      //     localStorage.setItem('watched', watched);
-      //   }
-      // });
-
-      // addToQueue.addEventListener('click', () => {
-      //   let queue = localStorage.getItem('queue');
-      //   let check = queue.split(';');
-      //   if (check.includes(id)) {
-      //     return 0;
-      //   } else {
-      //     queue = queue + id + ';';
-      //     localStorage.removeItem('queue');
-      //     localStorage.setItem('queue', queue);
-      //   }
-      // });
+      // koniec karty filmowej modal
     })
     .catch(error => {
       console.log('error: ' + error);
     });
 }
 
-// nowa funkcja wskazująca modal. Niestety niewypał
-
-// function pointer(event) {
-//   let movie = event.target;
-//   console.log(movie);
-// }
-
-// box.addEventListener('click', pointer);
-
 function toggleModalOn(event) {
   let movie = event.target.parentNode;
+
   if (movie.nodeName == 'DIV') {
     movie = movie.parentNode;
     modal.classList.remove('is-hidden');
@@ -129,9 +90,10 @@ function toggleModalOn(event) {
   closeModalBtn.addEventListener('click', toggleModalOff);
   refershModal(movie.children[1].textContent);
 
-  // id filmu z aktywnego modal. Mieści sie w <p></p>
   const id = movie.children[1].textContent;
-  console.log(id);
+
+  addToWatched.setAttribute('data-id', id);
+  addToQueue.setAttribute('data-id', id);
 }
 
 // funkcja zamykająca modal

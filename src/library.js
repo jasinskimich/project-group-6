@@ -1,3 +1,3 @@
-import './patialsJSLibrary/libraryButtons'
-import './patialsJSLibrary/libraryLoad'
-import './patialsJSLibrary/studentsModalLibrary'
+import './patialsJSLibrary/libraryButtons';
+import './patialsJSLibrary/libraryLoad';
+import './patialsJSLibrary/studentsModalLibrary';

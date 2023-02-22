@@ -46,6 +46,9 @@ async function fetchingPopularMovieDetails() {
   }
   // console.log(popularMovieDetails);
 }
+
+
+
 async function updatingPopularMovieHTML() {
   let myHTML = '';
   let genre;
