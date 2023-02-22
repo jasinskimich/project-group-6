@@ -4,9 +4,11 @@ async function loadMovies(ids) {
   await fetch(`${url}movie/${ids}?api_key=${apiKey}`)
     .then(movie => movie.json())
     .then(movie => {
+      console.log(movie);
       let genres = '';
       genres += movie.genres[0].name + ', ';
       genres += movie.genres[1].name;
+      console.log(movie.genres[1].name);
       const card = document.createElement('div');
       let myHTML = `<div class="movie__card">
       <div class="movie__imgbox">
