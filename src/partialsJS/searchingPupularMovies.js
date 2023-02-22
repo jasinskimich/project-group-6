@@ -29,7 +29,6 @@ function renderMovieList(popularMoviesData) {
   popularMoviesData.results.forEach(movie => {
     popularMovieID.push(movie.id);
   });
-  // console.log(popularMovieID);
   return popularMovieID;
 }
 

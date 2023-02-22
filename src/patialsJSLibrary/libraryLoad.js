@@ -72,3 +72,4 @@ function displayQueue() {
 
 displayWatched();
 displayQueue();
+
