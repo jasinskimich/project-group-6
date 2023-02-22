@@ -7,8 +7,8 @@ const blur = document.querySelector('.blur');
 const addToWatched = document.querySelector('.modal__btn--watched');
 const addToQueue = document.querySelector('.modal__btn--queue');
 
-localStorage.setItem('queue', '');
-localStorage.setItem('watched', '');
+// localStorage.setItem('queue', '');
+// localStorage.setItem('watched', '');
 
 // handlery Queue i Watch
 
@@ -77,6 +77,8 @@ async function refershModal(id) {
       console.log('error: ' + error);
     });
 }
+
+// funkcja otwierająca modal
 
 function toggleModalOn(event) {
   let movie = event.target.parentNode;
