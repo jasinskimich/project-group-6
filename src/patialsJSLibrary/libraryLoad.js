@@ -5,8 +5,12 @@ async function loadMovies(ids) {
     .then(movie => movie.json())
     .then(movie => {
       let genres = '';
-      genres += movie.genres[0].name + ', ';
-      genres += movie.genres[1].name;
+      if (movie.genres.length === 0) {
+        genres = '';
+      } else {
+        genres += movie.genres[0].name + ', ';
+        genres += movie.genres[1].name;
+      }
       const card = document.createElement('div');
       let myHTML = `<div class="movie__card">
       <div class="movie__imgbox">
@@ -27,7 +31,9 @@ async function loadMovies(ids) {
         </p>
       </div>
     </div>`;
+
       card.innerHTML = myHTML;
+
       box.append(card);
     })
     .catch(error => {
