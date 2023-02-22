@@ -83,21 +83,25 @@
         url(/src/images/tabletBackgroundLibrary1x.png) no-repeat;
     }
   }
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .headerLibrary__background {
-      background-image: url(/src/images/tabletBackgroundLibrary2x.png);
-    }
-  }
+  // @media (min-device-pixel-ratio: 2),
+  //   (min-resolution: 192dpi),
+  //   (min-resolution: 2dppx) {
+  //   .headerLibrary__background {
+  //     background-image: url(/src/images/tabletBackgroundLibrary2x.png);
+  //     object-fit: contain;
 
-  @media (min-device-pixel-ratio: 3),
-    (min-resolution: 288dpi),
-    (min-resolution: 3dppx) {
-    .box {
-      background-image: url(/src/images/tabletBackgroundLibrary3x.png);
-    }
-  }
+  //   }
+  // }
+
+  // @media (min-device-pixel-ratio: 3),
+  //   (min-resolution: 288dpi),
+  //   (min-resolution: 3dppx) {
+  //   .box {
+  //     background-image: url(/src/images/tabletBackgroundLibrary3x.png);
+  //     object-fit: contain;
+
+  //   }
+  // }
 }
 
 @media screen and (min-width: 1024px) {
@@ -112,19 +116,19 @@
         url(/src/images/desktopBackgroundLibrary1x.png) no-repeat;
     }
   }
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    .headerLibrary__background {
-      background-image: url(/src/images/desktopBackgroundLibrary2x.png);
-    }
-  }
+  // @media (min-device-pixel-ratio: 2),
+  //   (min-resolution: 192dpi),
+  //   (min-resolution: 2dppx) {
+  //   .headerLibrary__background {
+  //     background-image: url(/src/images/desktopBackgroundLibrary2x.png);
+  //   }
+  // }
 
-  @media (min-device-pixel-ratio: 3),
-    (min-resolution: 288dpi),
-    (min-resolution: 3dppx) {
-    .box {
-      background-image: url(/src/images/desktopBackgroundLibrary3x.png);
-    }
-  }
+  // @media (min-device-pixel-ratio: 3),
+  //   (min-resolution: 288dpi),
+  //   (min-resolution: 3dppx) {
+  //   .box {
+  //     background-image: url(/src/images/desktopBackgroundLibrary3x.png);
+  //   }
+  // }
 }
